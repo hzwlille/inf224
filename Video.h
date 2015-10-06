@@ -48,7 +48,7 @@ public :
     //Jouer l'objet vidéo
     virtual void jouer() const{
         string file=this->getPathname();
-        string commande="mpv"+file+"&";
+        string commande="kmplayer "+file+"&";
         system(commande.c_str());
     }
 };

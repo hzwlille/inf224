@@ -61,7 +61,7 @@ public :
     //Jouer l'objet photo
     virtual void jouer() const{
         string file=this->getPathname();
-        string commande="imageJ "+file+"&";
+        string commande="display "+file+"&";
         system(commande.c_str());
     }
 };

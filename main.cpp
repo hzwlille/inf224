@@ -4,7 +4,17 @@
 #include "Video.h"
 int main()
 {
-    Video* th=new Video("Like","c: is/like/good",150);
-    th->affiche(cout);
-    th->jouer();
+    Multimedia** tableOfMultimeida=new Multimedia*[20];
+    for(int i=0;i<20;i++){
+        if(i/3==1)
+            tableOfMultimeida[i]= new Photo();
+        else
+            tableOfMultimeida[i]= new Video();
+    }
+
+    for(int i=0; i<20; i++){
+
+        tableOfMultimeida[i]->affiche(cout);
+    }
+
 }

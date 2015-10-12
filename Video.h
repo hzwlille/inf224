@@ -42,7 +42,7 @@ public :
     //Affichage des données
     virtual void affiche(ostream& s) const{
         Multimedia::affiche(s);
-        s<<"\nDurée:"<<m_duree<<"\n";
+        s<<"\nDurée totale:"<<m_duree<<"\n";
     }
 
     //Jouer l'objet vidéo

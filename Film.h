@@ -28,8 +28,12 @@ public:
 
 
     //un (ou des) accesseur(s) retournant le tableau de durées et le nombre de chapitres
-    unsigned int virtual getDureeChapitre() const{        //?Je ne comprends pas pourquoi on ne peut pas utiliser le pointeur?
-        return m_dureeChapitre;
+    virtual unsigned int*  getDureeChapitre() const{        //Pour que l'encapsulation ne soit pas romptre, on crée un nouvel objet dont on passe le pointeur au retour
+        unsigned int*copie_m_dureeChapitre=new unsigned int[m_numberChapitre];
+        for(int i=0;i<m_numberChapitre;i++){
+            copie_m_dureeChapitre[i]=m_dureeChapitre[i];
+        }
+        return copie_m_dureeChapitre;
     }
 
     unsigned int virtual getNumberChapitre() const{

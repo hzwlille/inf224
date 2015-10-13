@@ -27,4 +27,11 @@ int main()
     }
     tryFilm->modify(a,10);
     tryFilm->affiche(cout);
+    unsigned int* b=tryFilm->getDureeChapitre();
+    b[2]=3;
+    tryFilm->affiche(cout);
+    cout<<"$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
+    for(int i=0;i<10;i++){
+        cout<<b[i]<<endl;
+    }
 }

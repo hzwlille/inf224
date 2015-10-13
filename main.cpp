@@ -34,4 +34,9 @@ int main()
     for(int i=0;i<10;i++){
         cout<<b[i]<<endl;
     }
+    cout<<"Détruit de l'objet$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
+    delete [] b;
+    delete tryFilm;
+    cout<<b[3]<<endl;
+    tryFilm->affiche(cout);
 }

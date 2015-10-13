@@ -22,7 +22,9 @@ public:
     //Déstructeur
     ~Film(){
         delete []m_dureeChapitre;
-       // delete   m_numberChapitre;
+        m_dureeChapitre=nullptr;
+        cout<<"Détruit de l'objet "<<getNom_multimedia()<<endl;
+       //delete   m_numberChapitre;
     }
 
     // un modifieur permettant de passer en argument un tableau de durées

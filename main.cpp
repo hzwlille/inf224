@@ -3,9 +3,11 @@
 #include "Photo.h"
 #include "Video.h"
 #include "Film.h"
+#include "Group.h"
+#include <list>
 int main()
 {
-   /* Multimedia** tableOfMultimeida=new Multimedia*[20];
+    /* Multimedia** tableOfMultimeida=new Multimedia*[20];
     for(int i=0;i<20;i++){
         if(i/3==1)
             tableOfMultimeida[i]= new Photo();
@@ -34,9 +36,11 @@ int main()
     for(int i=0;i<10;i++){
         cout<<b[i]<<endl;
     }
-    cout<<"Détruit de l'objet$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
     delete [] b;
     delete tryFilm;
-    cout<<b[3]<<endl;
-    tryFilm->affiche(cout);
+    Group* group1=new Group("My group");
+
+    group1->push_back(tryFilm);
+    group1->push_back(tryFilm);
+    group1->affiche(cout);
 }

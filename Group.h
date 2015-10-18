@@ -21,15 +21,14 @@ public:
 
     //une méthode d'affichage qui affiche les attributs de tous les objets de la liste
     void affiche(ostream& s){
-        s<<"Le groupe: "<<m_nomDuGroupe<<":"<<endl;
-        //while(this->has){
-         int a=this->size();
-         for(int i=0;i<a;i++){
-             Multimedia* w=(this->front());
-             *w->affiche(s);
+        s<<"Le groupe: "<<m_nomDuGroupe<<":"<<endl<<endl;
 
-             s<<"good"<<endl;
-         }
+        for (Group ::iterator myGroup= this->begin(); myGroup != this->end(); myGroup++){
+
+            (*myGroup)->affiche(s);
+            s<<"************************"<<endl;
+        }
+
 
     }
 

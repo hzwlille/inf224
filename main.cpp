@@ -4,9 +4,14 @@
 #include "Video.h"
 #include "Film.h"
 #include "Group.h"
+#include <memory>
 int main()
 {
-    Film*  tryFilm= new Film();
+    typedef shared_ptr<Film> FilmPtr;
+    typedef shared_ptr<Photo> PhotoPtr;
+    typedef shared_ptr<Group> GroupPtr;
+
+    FilmPtr  tryFilm(new Film("New Film1"));
 
     unsigned int * a= new unsigned int[10];
     for (int i=1;i<10;i++){
@@ -17,12 +22,12 @@ int main()
     b[2]=3;
 
 
-    Photo* tryPhoto= new Photo();
 
-    Group* group1=new Group("My group");
+    GroupPtr group1(new Group("My group"));
 
     group1->push_back(tryFilm);
-    group1->push_back(tryPhoto);
-
-    group1->affiche(cout);
+    group1->push_back(PhotoPtr(new Photo()));
+    group1->clear();
+    cout<<"éééééééééééééééééééééééééééééééééééééééé"<<endl;
+   // group1->affiche(cout);
 }

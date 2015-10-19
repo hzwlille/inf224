@@ -1,8 +1,9 @@
 #ifndef GROUP_H
 #define GROUP_H
 #include <list>
+#include<memory>
 
-class Group: public list<Multimedia*>{
+class Group: public list<shared_ptr<Multimedia> >{
 
 private:
     string m_nomDuGroupe;
@@ -10,7 +11,7 @@ public:
 
     //un constructeur
 
-    Group(string nomDuGroupe):list<Multimedia*>(){
+    Group(string nomDuGroupe):list<shared_ptr<Multimedia> >(){
         m_nomDuGroupe=nomDuGroupe;
     }
 
@@ -30,6 +31,9 @@ public:
         }
 
 
+    }
+    virtual ~Group() {
+        cout<<"Détruit de l'objet "<<getName()<<endl;
     }
 
 };

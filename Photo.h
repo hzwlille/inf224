@@ -26,7 +26,7 @@ public :
 
     //Destructeur de l'objet vidéo
     virtual ~Photo() {
-
+        cout<<"Détruit de l'objet "<<getNom_multimedia()<<endl;
     }
 
 

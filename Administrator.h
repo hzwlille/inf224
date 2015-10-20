@@ -10,6 +10,7 @@
 #include "Photo.h"
 #include "Video.h"
 #include "Group.h"
+#include <map>
 using namespace std;
 
 typedef map<string, shared_ptr<Multimedia> > MultimediaMap;
@@ -54,22 +55,50 @@ public:
     }
 
 
+
+
+
+
+
     //Supprimer un objet multimédia ou un groupe à partir de son nom, donné en argument
     void deleteObjet(string nomObjet){
 
         if(m_multimediaMap.find(nomObjet)!=m_multimediaMap.end()){                 //Le cas où c'est un objet multimedia
-            m_multimediaMap.erase(nomObjet);
-            for(auto it:m_groupMap){                        //Itérer pour tous les groupes
-                //  if((*it).){  //Trouver celui cotenant objet et l'enleve du groupe
-            }
-        }
-        else if(m_groupMap.find(nomObjet)!=m_groupMap.end()){
 
+            MultimediaMap:: iterator myObjet=m_multimediaMap.find(nomObjet);
+            shared_ptr<Multimedia> myObjetFind((*myObjet).second);
+
+            for(GroupMap:: iterator it=m_groupMap.begin();it!=m_groupMap.end();++it){       //Itérer pour tous les groupes
+
+                shared_ptr<Group> myGroupFind((*it).second);
+
+                for(Group::iterator itrGroup=myGroupFind.get()->begin();itrGroup!=myGroupFind.get()->end();++itrGroup){
+
+                    if(*itrGroup==myObjetFind)
+                       cout<<"find objet in groupe"<<endl;
+                       myGroupFind->erase(itrGroup);
+                }
+            }
+
+            m_multimediaMap.erase(nomObjet);
         }
+
+
+        else if(m_groupMap.find(nomObjet)!=m_groupMap.end()){                       //Le cas où c'est un objet group
+            m_groupMap.erase(nomObjet);
+            cout<<"Le groupe"<<nomObjet<<"est effacée<<endl";
+        }
+
+
         else{
             cout<<"L'objet n'est pas trouver dans aucun tableau"<<endl;
         }
     }
+
+
+
+
+
 
 
     //Rechercher un objet multimédia ou un groupe à partir de son nom, donné en argument
@@ -89,7 +118,17 @@ public:
 
     //Jouer un objet multimédia (à partir de son nom, donné en argument)
     //A compléter*****************************
-
+    void play(string nomObjet){
+        if(m_multimediaMap.find(nomObjet)!=m_multimediaMap.end()){                 //Le cas où c'est un objet multimedia
+            m_multimediaMap[nomObjet]->jouer();
+        }
+        else if(m_groupMap.find(nomObjet)!=m_groupMap.end()){
+            cout<<"On ne peut pas jouer au groupe"<<endl;
+        }
+        else{
+            cout<<"L'objet n'est pas trouver dans aucun tableau"<<endl;
+        }
+    }
 
 };
 

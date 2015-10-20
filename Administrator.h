@@ -77,7 +77,9 @@ public:
                     if(*itrGroup==myObjetFind)
                        cout<<"find objet in groupe"<<endl;
                        myGroupFind->erase(itrGroup);
+                       break;
                 }
+
             }
 
             m_multimediaMap.erase(nomObjet);
@@ -86,7 +88,7 @@ public:
 
         else if(m_groupMap.find(nomObjet)!=m_groupMap.end()){                       //Le cas où c'est un objet group
             m_groupMap.erase(nomObjet);
-            cout<<"Le groupe"<<nomObjet<<"est effacée<<endl";
+            cout<<"Le groupe "<<nomObjet<<" est effacée"<<endl;
         }
 
 

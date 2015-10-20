@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-#endif // PHOTO_H
+
 
 class Photo : public Multimedia {
 private :
@@ -65,3 +65,4 @@ public :
         system(commande.c_str());
     }
 };
+#endif // PHOTO_H

@@ -6,7 +6,7 @@
 using namespace std;
 
 
-#endif // MULTIMEDIA_H
+
 
 
 class Multimedia {
@@ -38,4 +38,4 @@ public :
     //Jouer l'objet multimédia
     virtual void jouer() const=0;
 };
-
+#endif // MULTIMEDIA_H

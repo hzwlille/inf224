@@ -2,6 +2,9 @@
 #define GROUP_H
 #include <list>
 #include<memory>
+#include "Film.h"
+#include "Photo.h"
+#include "Video.h"
 
 class Group: public list<shared_ptr<Multimedia> >{
 

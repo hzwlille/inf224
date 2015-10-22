@@ -67,21 +67,18 @@ public:
 
             MultimediaMap:: iterator myObjet=m_multimediaMap.find(nomObjet);
             shared_ptr<Multimedia> myObjetFind((*myObjet).second);
-
             for(GroupMap:: iterator it=m_groupMap.begin();it!=m_groupMap.end();++it){       //Itérer pour tous les groupes
 
                 shared_ptr<Group> myGroupFind((*it).second);
 
                 for(Group::iterator itrGroup=myGroupFind.get()->begin();itrGroup!=myGroupFind.get()->end();++itrGroup){
-
-                    if(*itrGroup==myObjetFind)
-                       cout<<"find objet in groupe"<<endl;
-                       myGroupFind->erase(itrGroup);
-                       break;
+                    if(*itrGroup==myObjetFind){
+                        myGroupFind->erase(itrGroup);
+                        break;
+                    }
                 }
 
             }
-
             m_multimediaMap.erase(nomObjet);
         }
 

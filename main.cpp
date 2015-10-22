@@ -17,9 +17,8 @@ int main()
     group1->push_back(film3);
 
     cout<<"§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§"<<endl;
-    tryit->deleteObjet("Film3");
+    tryit->deleteObjet("Film");
     cout<<"§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§"<<endl;
-    film2=0;
 
     group1->affiche(cout);
 

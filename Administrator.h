@@ -18,8 +18,8 @@ typedef map<string, shared_ptr<Group> > GroupMap;
 class Administrator{
 
 private:
-    MultimediaMap m_multimediaMap;
-    GroupMap m_groupMap;
+     MultimediaMap m_multimediaMap;
+     GroupMap m_groupMap;
 
 public:
 
@@ -102,7 +102,7 @@ public:
 
     //Rechercher un objet multimédia ou un groupe à partir de son nom, donné en argument
     void findObjet(string nomObjet, ostream& s){
-        s<<"give result"<<endl;
+       // s<<"give result"<<endl;
         if(m_multimediaMap.find(nomObjet)!=m_multimediaMap.end()){                 //Le cas où c'est un objet multimedia
             m_multimediaMap[nomObjet]->affiche(s);
         }
@@ -110,7 +110,7 @@ public:
             m_groupMap[nomObjet]->affiche(s);
         }
         else{
-            cout<<"L'objet n'est pas trouver dans aucun tableau"<<endl;
+            s<<"L'objet n'est pas trouver dans aucun tableau"<<endl;
         }
     }
 

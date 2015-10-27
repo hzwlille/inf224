@@ -39,19 +39,36 @@ public:
     // if (changeData) sleep(10); else sleep(5);
     //Traitement des demandes::
 
+
+   // response = "OK: " + request;
+   // cerr << "responsed: '" << response << "'" << endl;
+
+
+
     stringstream myRequest(request);
+    stringstream textSend;
+
+
+
 
     string commande;
     myRequest>>commande;
+
+
+
 
     Administrator* tryit=new Administrator();
     if(commande=="find")    //rechercher un objet multimédia
     {
         string findString;
         myRequest>>findString;
-        tryit->findObjet(findString,cerr);
-        cerr <<"find123"<<endl;
-        cerr<<myRequest.str()<<endl;
+        tryit->findObjet(findString,textSend);
+        cerr <<"find1"<<endl;
+        cerr<<myRequest.str()<<"++"<<endl;
+        response=textSend.str();
+
+        cerr<<"****"<<textSend.str()<<"****";
+        //response.
     }
     else
     {
@@ -78,8 +95,6 @@ public:
     }
 
 
-    response = "OK: " + request;
-    cerr << "responsed: '" << response << "'" << endl;
 
     // renvoyer false pour clore la connexion avec le client
     return true;

@@ -1,11 +1,11 @@
-#include <list>
-#include "Multimedia.h"
-#include "Administrator.h"
-#include "Group.h"
-#include <memory>
+//
+//  server.cpp
+//  TP C++
+//  Eric Lecolinet - Telecom ParisTech - 2015.
+//
+
 #include <iostream>
 #include <string>
-#include <sstream>
 #include "TCPServer.h"
 using namespace std;
 
@@ -13,7 +13,7 @@ const int DEFAULT_PORT = 3331;
 
 class MyApp {
 public:
-
+  
   /// Cette fonction est appelée chaque fois qu'il y a une requête à traiter.
   /// - 'request' contient la requête
   /// - 'response' sert à indiquer la réponse qui sera renvoyée au client
@@ -29,58 +29,18 @@ public:
     // mettre cette variable à true si la commande modifie les donnees du programme
     bool changeData = false;
     if (request == "delMedias" || request == "delGroups") changeData = true;
-
+    
     // suivant le cas on bloque le verrou en mode WRITE ou en mode READ
     TCPServer::Lock lock(cnx, changeData);
-
+    
     cerr << "request: '" << request << "'" << endl;
-
+    
     // simule un traitement long (décommenter pour tester le verrou)
     // if (changeData) sleep(10); else sleep(5);
-    //Traitement des demandes::
-
-    stringstream myRequest(request);
-
-    string commande;
-    myRequest>>commande;
-
-    Administrator* tryit=new Administrator();
-    if(commande=="find")    //rechercher un objet multimédia
-    {
-        string findString;
-        myRequest>>findString;
-        tryit->findObjet(findString,cerr);
-        cerr <<"find123"<<endl;
-        cerr<<myRequest.str()<<endl;
-    }
-    else
-    {
-        if(commande=="affiche")     //afficher ses attributs
-        {
-            string findString;
-            myRequest>>findString;
-            tryit->findObjet(findString,cerr);
-            cerr <<"find"<<endl;
-
-        }
-        else
-        {
-            if(commande=="play")        //jouer un objet multimédia
-            {
-                cerr <<"play"<<endl;
-
-            }
-            else
-            {
-                cerr <<"Commande inconnue!"<<endl;
-            }
-        }
-    }
-
-
+    
     response = "OK: " + request;
-    cerr << "responsed: '" << response << "'" << endl;
-
+    cerr << "response: '" << response << "'" << endl;
+    
     // renvoyer false pour clore la connexion avec le client
     return true;
   }
@@ -89,39 +49,18 @@ public:
 
 int main(int argc, char* argv[])
 {
-
-    Administrator* tryit=new Administrator();
-    shared_ptr<Film> film1(tryit->creatFilm("Film1"));
-    shared_ptr<Film> film2(tryit->creatFilm("Film2"));
-    shared_ptr<Film> film3(tryit->creatFilm("Film3"));
-    tryit->creatPhoto("Photo1");
-    shared_ptr<Group> group1(tryit->creatGroup("Group1"));
-
-    group1->push_back(film1);
-    group1->push_back(film2);
-    group1->push_back(film3);
-
-    cout<<"§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§"<<endl;
-    tryit->deleteObjet("Film1");
-    cout<<"§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§"<<endl;
-
-    group1->affiche(cout);
-
-
-
   TCPServer * server = new TCPServer();
   MyApp * app = new MyApp();
   server->setCallback(app, &MyApp::processRequest);
-
+  
   int port = (argc >= 2) ? atoi(argv[1]) : DEFAULT_PORT;
   cout << "Starting Server on port " << port << endl;
   int status = server->run(port);
-
+  
   if (status < 0) {
     cerr << "Could not start Server on port " << port << endl;
     return 1;
   }
   else return 0;
 }
-
 

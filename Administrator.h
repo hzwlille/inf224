@@ -5,12 +5,14 @@
 #include <string>
 #include <map>
 #include <memory>
+#include <map>
+#include <fstream>
+#include <regex>
 #include "Multimedia.h"
 #include "Film.h"
 #include "Photo.h"
 #include "Video.h"
 #include "Group.h"
-#include <map>
 using namespace std;
 
 typedef map<string, shared_ptr<Multimedia> > MultimediaMap;
@@ -30,8 +32,8 @@ public:
 
 
     //Créér une Photo, une Vidéo, un Film, un Groupe
-    shared_ptr<Photo> creatPhoto(string photoName){
-        shared_ptr<Photo> myPhoto(new Photo(photoName));
+    shared_ptr<Photo> creatPhoto(string photoName="new_photo", string pathname="/new_project/", float latitude=100, float longitude=100){
+        shared_ptr<Photo> myPhoto(new Photo(photoName,pathname,latitude,longitude));
         m_multimediaMap[photoName] =myPhoto;
         return myPhoto;
     }
@@ -110,7 +112,7 @@ public:
             m_groupMap[nomObjet]->affiche(s);
         }
         else{
-            s<<"L'objet n'est pas trouver dans aucun tableau";
+            s<<"L'objet n'est pas trouver dans aucun tableau\nff";
         }
     }
 
@@ -132,6 +134,81 @@ public:
             }
         }
         s<<"***************";
+    }
+
+
+
+
+
+
+    //Sérialisation
+
+
+
+    fabriqueObjet(ifstream f ,string objet){
+
+        if(objet=="photo"){
+
+            string photoName;
+            f.getline(photoName,streamsize(20),'Nom de multimedia: ');
+
+            string pathName;
+            f.getline(pathName,streamsize(20),'Pathname: ');
+            string slatitude;
+            f.getline(slatitude,streamsize(20),'Latitude:');
+            long latitude=atol(slatitude);
+            string slongitude;
+            f.getline(slongitude,streamsize(20),'Latitude:');
+            long longitude=atol(slongitude);
+
+            creatPhoto(photoName,pathName,latitude,longitude);
+        }
+        if(objet=="video"){
+
+        }
+        if(objet=="film"){
+
+        }
+        if(objet=="pho"){
+
+        }
+
+
+
+    }
+
+    bool   save(const string & fileName)
+    {
+        ofstream f ;
+        f.open(fileName);
+        if (!f.is_open()) {
+            cerr << "Can't open file " << fileName << endl;
+            return false;
+        }
+        for (auto it : m_multimediaMap)
+        {
+
+            f<<"**"<<it.first<<"**\n";
+            it.second->affiche(f);
+            f<<"$$FIN OF THIS OBJECT$$\n\n";
+        }
+
+        return true;
+}
+
+    bool   load(const string & fileName)
+    {
+        ifstream f;
+        f.open(fileName);
+        if(!f.is_open()){
+            cerr << "Can't open file " << fileName << endl;
+            return false;
+        }
+        string myCommand="new";
+
+        while(f)
+
+        return true;
     }
 
 };

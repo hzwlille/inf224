@@ -43,3 +43,14 @@ void   Multimedia::  affiche(ostream& s) const           //Afficher les informat
 {
     s << "Nom de multimedia: "<< m_nom_multimedia <<"\nPathname: "<< m_pathname<<"\n";
 }
+
+////Sérialisation
+//bool   Multimedia:: save(const string & fileName)
+//{
+
+//}
+
+//bool   Multimedia:: load(const string & fileName)
+//{
+
+//}

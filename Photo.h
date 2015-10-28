@@ -64,5 +64,10 @@ public :
         string commande="display "+file+"&";
         system(commande.c_str());
     }
+    //Sérialisation
+
+
+
+
 };
 #endif // PHOTO_H

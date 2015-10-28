@@ -37,5 +37,11 @@ public :
 
     //Jouer l'objet multimédia
     virtual void jouer() const=0;
+
+//    //Sérialisation
+//    virtual bool save(const string fileName);
+//    virtual bool load(const string fileName);
+
+
 };
 #endif // MULTIMEDIA_H

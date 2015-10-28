@@ -11,7 +11,6 @@ using namespace std;
 
 const int DEFAULT_PORT = 3331;
 Administrator* tryit=new Administrator();
-
 class MyApp {
 public:
 
@@ -55,7 +54,7 @@ public:
         myRequest>>commande;
         myRequest>>findString;
 
-       // Administrator* tryit=new Administrator();
+        // Administrator* tryit=new Administrator();
         if(commande=="find")                    //rechercher un objet multimédia
         {
             tryit->findObjet(findString,textSend);
@@ -115,7 +114,7 @@ int main(int argc, char* argv[])
 
     group1->affiche(cout);
 
-
+    tryit->save("foo.txt");
 
     TCPServer * server = new TCPServer();
     MyApp * app = new MyApp();
@@ -131,5 +130,6 @@ int main(int argc, char* argv[])
     }
     else return 0;
 }
+
 
 

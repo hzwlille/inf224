@@ -90,7 +90,7 @@ public:
 
 
         else{
-            cout<<"L'objet n'est pas trouver dans aucun tableau"<<endl;
+            cout<<"L'objet n'est pas trouver dans aucun tableau";
         }
     }
 
@@ -110,23 +110,28 @@ public:
             m_groupMap[nomObjet]->affiche(s);
         }
         else{
-            s<<"L'objet n'est pas trouver dans aucun tableau"<<endl;
+            s<<"L'objet n'est pas trouver dans aucun tableau";
         }
     }
 
 
     //Jouer un objet multimédia (à partir de son nom, donné en argument)
     //A compléter*****************************
-    void play(string nomObjet){
+    void play(string nomObjet, ostream& s){
         if(m_multimediaMap.find(nomObjet)!=m_multimediaMap.end()){                 //Le cas où c'est un objet multimedia
             m_multimediaMap[nomObjet]->jouer();
+            s<<"On démarre le jeux:)";
         }
-        else if(m_groupMap.find(nomObjet)!=m_groupMap.end()){
-            cout<<"On ne peut pas jouer au groupe"<<endl;
+        else
+        {
+            if(m_groupMap.find(nomObjet)!=m_groupMap.end()){
+                s<<"On ne peut pas jouer au groupe";
+            }
+            else{
+                s<<"L'objet n'est pas trouver dans aucun tableau pour jouer";
+            }
         }
-        else{
-            cout<<"L'objet n'est pas trouver dans aucun tableau"<<endl;
-        }
+        s<<"***************";
     }
 
 };

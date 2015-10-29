@@ -143,25 +143,23 @@ public:
 
     //Sérialisation
 
-
-
-    fabriqueObjet(ifstream f ,string objet){
+    void fabriqueObjet(ifstream f ,string objet){
 
         if(objet=="photo"){
 
-            string photoName;
-            f.getline(photoName,streamsize(20),'Nom de multimedia: ');
+//            string photoName;
+//            f.getline(photoName,streamsize(20),'Nom de multimedia: ');
+//            regex
+//            string pathName;
+//            f.getline(pathName,streamsize(20),'Pathname: ');
+//            string slatitude;
+//            f.getline(slatitude,streamsize(20),'Latitude:');
+//            long latitude=atol(slatitude);
+//            string slongitude;
+//            f.getline(slongitude,streamsize(20),'Latitude:');
+//            long longitude=atol(slongitude);
 
-            string pathName;
-            f.getline(pathName,streamsize(20),'Pathname: ');
-            string slatitude;
-            f.getline(slatitude,streamsize(20),'Latitude:');
-            long latitude=atol(slatitude);
-            string slongitude;
-            f.getline(slongitude,streamsize(20),'Latitude:');
-            long longitude=atol(slongitude);
-
-            creatPhoto(photoName,pathName,latitude,longitude);
+//            creatPhoto(photoName,pathName,latitude,longitude);
         }
         if(objet=="video"){
 
@@ -172,9 +170,6 @@ public:
         if(objet=="pho"){
 
         }
-
-
-
     }
 
     bool   save(const string & fileName)
@@ -187,14 +182,12 @@ public:
         }
         for (auto it : m_multimediaMap)
         {
-
-            f<<"**"<<it.first<<"**\n";
             it.second->affiche(f);
-            f<<"$$FIN OF THIS OBJECT$$\n\n";
+            f<<"$$FIN_OF_THIS_OBJECT$$\n\n";
         }
 
         return true;
-}
+    }
 
     bool   load(const string & fileName)
     {
@@ -204,9 +197,15 @@ public:
             cerr << "Can't open file " << fileName << endl;
             return false;
         }
-        string myCommand="new";
+        string myCommand;
+        while(std::getline(f,myCommand)){
 
-        while(f)
+            if(myCommand=="Type_de_objet: video"){
+                cout<<"good";
+                std::getline(f,myCommand);
+                fabriqueObjet(f,myCommand);
+            }
+        }
 
         return true;
     }

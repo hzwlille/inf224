@@ -41,8 +41,9 @@ public :
 
     //Affichage des données
     virtual void affiche(ostream& s) const{
+        s<<"Type_de_objet: video"<<endl;
         Multimedia::affiche(s);
-        s<<"\nDurée totale:"<<m_duree<<"\n";
+        s<<"\nDurée_totale:"<<m_duree<<"\n";
     }
 
     //Jouer l'objet vidéo

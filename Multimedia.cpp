@@ -41,7 +41,7 @@ void   Multimedia::  setPathname(string pathname)
 
 void   Multimedia::  affiche(ostream& s) const           //Afficher les informations sur l'objet multimédia
 {
-    s << "Nom de multimedia: "<< m_nom_multimedia <<"\nPathname: "<< m_pathname<<"\n";
+    s << "Nom_de_multimedia: "<< m_nom_multimedia <<"\nPathname: "<< m_pathname;
 }
 
 ////Sérialisation

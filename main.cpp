@@ -114,8 +114,6 @@ int main(int argc, char* argv[])
 
     group1->affiche(cout);
 
-    tryit->save("foo.txt");
-
     TCPServer * server = new TCPServer();
     MyApp * app = new MyApp();
     server->setCallback(app, &MyApp::processRequest);

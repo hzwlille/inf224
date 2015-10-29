@@ -52,6 +52,7 @@ public:
 
     // une méthode d'affichage affichant la durée des chapitres (la méthode pour jouer l'objet n'a pas besoin d'être redéfinie)
     void virtual affiche(ostream& s){
+        s<<"Type_de_objet: film"<<endl;
         Video::affiche(s);
         s<<"****************************\n";
         for(unsigned int i=0;i<m_numberChapitre;i++)

@@ -52,7 +52,7 @@ public :
 
     //Affichage des données
     virtual void affiche(ostream& s) const{
-        s<<"Type_de_objet: photo"<<endl;
+        s<<"Type_de_objet: "<<endl<<"photo"<<endl;
         Multimedia::affiche(s);
         s << "\nLatitude: "<<m_latitude<<"\nLongitude "<<m_longitude<<"\n";
     }

@@ -15,7 +15,7 @@ private:
 public:
     //constructeurs
     Film(string nom_multimedia="new_Film", string pathname="/new_project/", unsigned int duree=10):Video(nom_multimedia,pathname,duree){
-
+        m_numberChapitre=0;
     }
 
 
@@ -51,10 +51,10 @@ public:
     }
 
     // une méthode d'affichage affichant la durée des chapitres (la méthode pour jouer l'objet n'a pas besoin d'être redéfinie)
-    void virtual affiche(ostream& s){
-        s<<"Type_de_objet: film"<<endl;
-        Video::affiche(s);
-        s<<"****************************\n";
+    virtual void affiche(ostream& s) const{
+        s<<"Type_de_objet: "<<endl<<"film"<<endl;
+        Multimedia::affiche(s);
+        s<<"\nDurée_totale: "<<this->getDuree()<<"\n";
         for(unsigned int i=0;i<m_numberChapitre;i++)
         {
             s<<"Chapitre: "<<i<<"  Durée:"<<m_dureeChapitre[i]<<"\n";

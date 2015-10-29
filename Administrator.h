@@ -8,6 +8,7 @@
 #include <map>
 #include <fstream>
 #include <regex>
+#include <cstring>
 #include "Multimedia.h"
 #include "Film.h"
 #include "Photo.h"
@@ -20,8 +21,8 @@ typedef map<string, shared_ptr<Group> > GroupMap;
 class Administrator{
 
 private:
-     MultimediaMap m_multimediaMap;
-     GroupMap m_groupMap;
+    MultimediaMap m_multimediaMap;
+    GroupMap m_groupMap;
 
 public:
 
@@ -38,14 +39,14 @@ public:
         return myPhoto;
     }
 
-    shared_ptr<Video> creatVideo(string videoName){
-        shared_ptr<Video> myVideo(new Video(videoName));
+    shared_ptr<Video> creatVideo(string videoName,  string pathname="/new_project/", unsigned int duree=10){
+        shared_ptr<Video> myVideo(new Video(videoName, pathname,duree));
         m_multimediaMap[videoName] =myVideo;
         return myVideo;
     }
 
-    shared_ptr<Film> creatFilm(string filmName){
-        shared_ptr<Film> myFilm(new Film(filmName));
+    shared_ptr<Film> creatFilm(string filmName, string pathname="/new_project/", unsigned int duree=10){
+        shared_ptr<Film> myFilm(new Film(filmName, pathname, duree));
         m_multimediaMap[filmName] =myFilm;
         return myFilm;
     }
@@ -104,9 +105,11 @@ public:
 
     //Rechercher un objet multimédia ou un groupe à partir de son nom, donné en argument
     void findObjet(string nomObjet, ostream& s){
-       // s<<"give result"<<endl;
+        // s<<"give result"<<endl;
         if(m_multimediaMap.find(nomObjet)!=m_multimediaMap.end()){                 //Le cas où c'est un objet multimedia
             m_multimediaMap[nomObjet]->affiche(s);
+
+            std::cout<<"good";
         }
         else if(m_groupMap.find(nomObjet)!=m_groupMap.end()){
             m_groupMap[nomObjet]->affiche(s);
@@ -143,31 +146,66 @@ public:
 
     //Sérialisation
 
-    void fabriqueObjet(ifstream f ,string objet){
+    void fabriqueObjet(ifstream &f ,string objet){
 
         if(objet=="photo"){
 
-//            string photoName;
-//            f.getline(photoName,streamsize(20),'Nom de multimedia: ');
-//            regex
-//            string pathName;
-//            f.getline(pathName,streamsize(20),'Pathname: ');
-//            string slatitude;
-//            f.getline(slatitude,streamsize(20),'Latitude:');
-//            long latitude=atol(slatitude);
-//            string slongitude;
-//            f.getline(slongitude,streamsize(20),'Latitude:');
-//            long longitude=atol(slongitude);
+            string nom;
+            getline(f,nom,' ');
+            getline(f,nom);
 
-//            creatPhoto(photoName,pathName,latitude,longitude);
+            string pathName;
+            getline(f,pathName,' ');
+            getline(f,pathName);
+
+            string slatitude;
+            getline(f,slatitude,' ');
+            getline(f,slatitude);
+            long latitude=atol(slatitude.c_str());
+
+            string slongitude;
+            getline(f,slongitude,' ');
+            getline(f,slongitude);
+            long longitude=std::atol(slongitude.c_str());
+
+            creatPhoto(nom,pathName,latitude,longitude);
+
         }
         if(objet=="video"){
 
-        }
-        if(objet=="film"){
+            string nom;
+            getline(f,nom,' ');
+            getline(f,nom);
+
+            string pathName;
+            getline(f,pathName,' ');
+            getline(f,pathName);
+
+            string sduree_total;
+            getline(f,sduree_total,' ');
+            getline(f,sduree_total);
+            int duree_total=atoi(sduree_total.c_str());
+
+            creatVideo(nom,pathName,duree_total);
 
         }
-        if(objet=="pho"){
+        if(objet=="film"){
+            cout<<"find film"<<endl;
+            string nom;
+            getline(f,nom,' ');
+            getline(f,nom);
+
+            string pathName;
+            getline(f,pathName,' ');
+            getline(f,pathName);
+
+            string sduree_total;
+            getline(f,sduree_total,' ');
+            getline(f,sduree_total);
+            int duree_total=atoi(sduree_total.c_str());
+
+            creatFilm(nom,pathName,duree_total);
+
 
         }
     }
@@ -198,11 +236,13 @@ public:
             return false;
         }
         string myCommand;
+        int i=1;
         while(std::getline(f,myCommand)){
 
-            if(myCommand=="Type_de_objet: video"){
-                cout<<"good";
+            if(myCommand=="Type_de_objet: "){
+
                 std::getline(f,myCommand);
+                cout<<"Trouver l'objet: "<<i++<<" "<<myCommand<<endl;
                 fabriqueObjet(f,myCommand);
             }
         }

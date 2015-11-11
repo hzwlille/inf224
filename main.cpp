@@ -98,10 +98,14 @@ int main(int argc, char* argv[])
 {
 
     tryit->save("newFile1.2.txt");
-    tryit->load("newFile.txt");
+    tryit->load("newFile1.2.txt");
     tryit->save("newFile1.txt");
+    tryit->creatFilm("FilmX");
+    tryit->findObjet("FilmX",cout);
+    cout<<endl<<endl<<endl<<"************************"<<endl;
+    Multimedia *filmTry=new Film();
+    filmTry->affiche(cout);
 
-/*
     TCPServer * server = new TCPServer();
     MyApp * app = new MyApp();
     server->setCallback(app, &MyApp::processRequest);
@@ -115,13 +119,9 @@ int main(int argc, char* argv[])
         return 1;
     }
     else return 0;
-    */
 
-    tryit->creatFilm("FilmX");
-    tryit->findObjet("FilmX",cout);
-    cout<<endl<<endl<<endl<<"************************"<<endl;
-    Multimedia *filmTry=new Film();
-    filmTry->affiche(cout);
+
+
 }
 
 

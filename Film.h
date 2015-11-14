@@ -55,9 +55,11 @@ public:
         s<<"Type_de_objet: "<<endl<<"film"<<endl;
         Multimedia::affiche(s);
         s<<"\nDurée_totale: "<<this->getDuree()<<"\n";
+        s<<"Nombre_de_chapitres: "<<m_numberChapitre<<endl;
+
         for(unsigned int i=0;i<m_numberChapitre;i++)
         {
-            s<<"Chapitre: "<<i<<"  Durée:"<<m_dureeChapitre[i]<<"\n";
+            s<<"Chapitre:_"<<i+1<<"_Durée: "<<m_dureeChapitre[i]<<"\n";
         }
 
     }

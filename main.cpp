@@ -96,15 +96,21 @@ public:
 
 int main(int argc, char* argv[])
 {
-
-    tryit->save("newFile1.2.txt");
-    tryit->load("newFile1.2.txt");
-    tryit->save("newFile1.txt");
-    tryit->creatFilm("FilmX");
+    tryit->load("MyBase");
+    std::shared_ptr<Film> newFilm=tryit->creatFilm("FilmX");
+    unsigned int chapitre[3];
+    chapitre[0]=20;
+    chapitre[1]=45;
+    newFilm->modify(chapitre,3);
     tryit->findObjet("FilmX",cout);
     cout<<endl<<endl<<endl<<"************************"<<endl;
     Multimedia *filmTry=new Film();
     filmTry->affiche(cout);
+
+    tryit->creatGroup("Like");
+    tryit->creatPhoto("goodPhoto");
+    tryit->creatVideo("Good video");
+    tryit->save("Try");
 
     TCPServer * server = new TCPServer();
     MyApp * app = new MyApp();
@@ -119,9 +125,6 @@ int main(int argc, char* argv[])
         return 1;
     }
     else return 0;
-
-
-
 }
 
 

@@ -86,7 +86,7 @@ public:
         }
 
 
-        else if(m_groupMap.find(nomObjet)!=m_groupMap.end()){                       //Le cas où c'est un objet group
+        else if(m_groupMap.find(nomObjet)!=m_groupMap.end()){
             m_groupMap.erase(nomObjet);
             cout<<"Le groupe "<<nomObjet<<" est effacée"<<endl;
         }
@@ -108,10 +108,8 @@ public:
         // s<<"give result"<<endl;
         if(m_multimediaMap.find(nomObjet)!=m_multimediaMap.end()){                 //Le cas où c'est un objet multimedia
             m_multimediaMap[nomObjet]->affiche(s);
-
-            std::cout<<"good";
         }
-        else if(m_groupMap.find(nomObjet)!=m_groupMap.end()){
+        else if(m_groupMap.find(nomObjet)!=m_groupMap.end()){                      //Le cas où c'est un objet group
             m_groupMap[nomObjet]->affiche(s);
         }
         else{
@@ -129,7 +127,7 @@ public:
         }
         else
         {
-            if(m_groupMap.find(nomObjet)!=m_groupMap.end()){
+            if(m_groupMap.find(nomObjet)!=m_groupMap.end()){                       //Le cas où c'est un objet group
                 s<<"On ne peut pas jouer au groupe";
             }
             else{
@@ -204,8 +202,19 @@ public:
             getline(f,sduree_total);
             int duree_total=atoi(sduree_total.c_str());
 
-            creatFilm(nom,pathName,duree_total);
-
+            string snumberDeChapitre;
+            getline(f,snumberDeChapitre,' ');
+            getline(f,snumberDeChapitre);
+            int numberDeChapitre=atoi(snumberDeChapitre.c_str());
+            unsigned int table[numberDeChapitre];
+            string sDuree;
+            for(int i=0;i<numberDeChapitre;i++){
+                getline(f,sDuree,' ');
+                getline(f,sDuree);
+                table[i]=atoi(sDuree.c_str());
+            }
+            shared_ptr<Film> newFilm=creatFilm(nom,pathName,duree_total);
+            newFilm->modify(table,numberDeChapitre);
 
         }
     }

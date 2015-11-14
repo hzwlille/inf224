@@ -108,7 +108,8 @@ void TCPServer::readMessages(Cnx* cnx) {
     
     // toujours envoyer une reponse au client sinon il va se bloquer !
     // SocketBuffer::writeLine() envoie tout et rajoute le delimiteur
-    ssize_t sent = cnx->writeLine(response);
+
+    ssize_t sent = cnx->writeLine(response+"\nEnd_affiche\n");
     
     if (sent < 0) {
       printMsg("Write error", cnx);

@@ -79,8 +79,22 @@ public:
                 }
                 else
                 {
-                    textSend<<"Commande inconnue!";
-                    cerr <<"Commande inconnue!\n"<<endl;
+                    if(commande=="load"){
+                        cerr<<"load"<<endl;
+                        tryit->cLoad(findString,cerr);
+                    }
+                    else
+                    {
+                        if(commande=="save"){
+                            cerr<<"save"<<endl;
+                            tryit->cSave(findString,cerr);
+                        }
+                        else
+                        {
+                            textSend<<"Commande inconnue!";
+                            cerr <<"Commande inconnue!\n"<<endl;
+                        }
+                    }
                 }
             }
         }

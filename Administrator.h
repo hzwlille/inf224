@@ -137,7 +137,18 @@ public:
         s<<"***************";
     }
 
+    //Charger une liste avec la commande
+    void cLoad(string nomObjet, ostream& s){
+        this->load(nomObjet);
+        s<<"La nouvelle bibliothèque chargée!";
+    }
 
+    //Save une liste avec la commande
+    void cSave(string nomObjet, ostream& s){
+        cout<<"$$$"<<nomObjet<<"$$$ê";
+        this->save(nomObjet);
+        s<<"La bibliothèque sauvegardée!";
+    }
 
 
 
